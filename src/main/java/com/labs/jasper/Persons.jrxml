@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Clients" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2f9d114-5e78-4163-99e1-b35472650954">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["F:\\java\\workspaces\\oxygen\\Tutorial_MasterDetail_JasperReport\\src\\main\\java\\com\\labs\\jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<field name="name" class="java.lang.String"/>
+	<field name="city" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="emailAddresses" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="7" width="118" height="25" forecolor="#0099FF" uuid="2a00cbf4-5069-4b45-8642-ed90a60eb635"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Address Book]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="173" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="48" y="20" width="156" height="30" backcolor="#CCCCCC" uuid="eb9dc228-77ce-4c00-b765-af59e1c09ce9"/>
+				<textElement>
+					<font size="20" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="204" y="20" width="94" height="30" backcolor="#CCCCCC" uuid="dbea3d22-ed53-4791-8616-6458c6ac2d14"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="48" y="0" width="156" height="20" backcolor="#CCCCCC" uuid="02e601cf-ea27-47cd-ad54-b5bef9c755c8"/>
+				<text><![CDATA[NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="204" y="0" width="94" height="20" backcolor="#CCCCCC" uuid="551072b2-652f-4239-85b3-b8af2733e1e2"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[CITY]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="20" width="48" height="30" backcolor="#CCCCCC" uuid="adba80c9-3678-4c5a-bfc2-fc51d2983641"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="48" height="20" backcolor="#CCCCCC" uuid="23077f07-9c8d-493b-b7d2-be0c4b6770e0"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="0" y="66" width="555" height="1" uuid="66d0625f-8a2c-4823-a18f-f4a85a3d9804"/>
+			</line>
+			<subreport>
+				<reportElement x="25" y="73" width="200" height="100" uuid="67f3c6d5-0229-4fb2-856f-a7edf4459e09"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{emailAddresses})]]></dataSourceExpression>
+            <subreportExpression class = "java.lang.String">
+               <![CDATA[$P{SUBREPORT_DIR} + "Emails.jasper"]]>
+            </subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
